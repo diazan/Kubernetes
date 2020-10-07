@@ -1,0 +1,35 @@
+Eejercicio 1:
+
+//Creacion del certificado (si no, no funciona el comando "minikube addons enable ingress")
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls-key.key -out tls-cert.crt
+
+kubectl create secret tls tls-certificate --key tls-key.key --cert tls-cert.crt
+
+minikube service hello-node
+
+Ejercicio2:
+
+kubectl apply -f deployments.yaml --record=true
+
+kubectl rollout status deployment nodeapp
+
+kubectl apply -f services.yaml
+
+kubectl describe deployment nodeapp
+
+minikube service nodeapp --url
+
+-----------------
+
+kubectl apply -f deployments.yaml 
+
+kubectl rollout status deployment nodeapp
+
+kubectl rollout history deployment nodeapp
+
+-----------------
+kubectl rollout undo deployment nodeapp --record=true
+
+
+
